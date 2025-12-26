@@ -1,0 +1,11 @@
+@import '../login/login.scss';
+
+.card {
+  @extend .login-card;
+}
+
+.field {
+  @extend .form-field;
+}
+
+

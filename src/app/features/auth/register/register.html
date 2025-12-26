@@ -1,0 +1,35 @@
+<div class="auth-container">
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="header">
+      <h2>Create account</h2>
+      <p class="subtitle">Join School Management</p>
+    </div>
+
+    <label class="field">
+      <span>Full name</span>
+      <input type="text" formControlName="name" placeholder="Your name" />
+    </label>
+
+    <label class="field">
+      <span>Email</span>
+      <input type="email" formControlName="email" placeholder="name@example.com" />
+    </label>
+
+    <label class="field">
+      <span>Password</span>
+      <input type="password" formControlName="password" placeholder="Min. 6 characters" />
+    </label>
+
+    <button class="primary" type="submit" [disabled]="form.invalid || loading">
+      <span *ngIf="!loading">Create account</span>
+      <span *ngIf="loading">Creating...</span>
+    </button>
+
+    <p class="signup">
+      Already have an account?
+      <a class="link" [routerLink]="['/auth/login']">Sign in</a>
+    </p>
+  </form>
+</div>
+
+
