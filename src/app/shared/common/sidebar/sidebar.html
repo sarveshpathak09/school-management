@@ -5,14 +5,11 @@
     </div>
   
     <ul class="menu">
-      <li routerLink="/dashboard"><i class="fas fa-chart-line"></i> Dashboard</li>
-      <li routerLink="/teachers"><i class="fas fa-chalkboard-teacher"></i> Teachers</li>
-      <li routerLink="/manager"><i class="fas fa-user-tie"></i> Manager</li>
-      <li routerLink="/students"><i class="fas fa-user-graduate"></i> Students</li>
-      <li routerLink="/classes"><i class="fas fa-layer-group"></i> Classes</li>
-      <li routerLink="/subadmin"><i class="fas fa-users-cog"></i> Sub Admin</li>
-      <li routerLink="/settings"><i class="fas fa-cog"></i> Settings</li>
-
+      @for (item of menuItems; track item.label) {
+        <li [routerLink]="item.link">
+          <i class="{{ item.icon }}"></i> {{ item.label }}
+        </li>
+      }
     </ul>
   </div>
   

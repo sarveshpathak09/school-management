@@ -71,8 +71,20 @@ export class Login implements OnInit {
   }
 
   redirectByRole(role: string) {
-    if (role === 'ADMIN') this.router.navigate(['/admin']);
-    else if (role === 'SUPER_ADMIN') this.router.navigate(['/super-admin']);
-    else this.router.navigate(['auth/register']);
+    if (role === 'SUPER_ADMIN') { // PRINCIPAL
+      this.router.navigate(['/super-admin']);
+    }
+    else if (role === 'ADMIN') { // DIRECTOR or MANAGER
+      this.router.navigate(['/admin']);
+    } 
+     else if (role === 'SUB_ADMIN') { // TEACHER or ASSISTANT
+      this.router.navigate(['/sub-admin']);
+    } 
+     else if (role === 'STUDENT') { // STUDENT
+      this.router.navigate(['/students']);
+    } 
+    else {
+      this.router.navigate(['auth/register']);
+    }
   }
 }

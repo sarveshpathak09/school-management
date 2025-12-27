@@ -22,16 +22,16 @@ export class Auth {
   //  DUMMY LOGIN API CALL
   login(data: any) {
     // ✅ dummy credentials
-    if (data.email === 'schooladmin@yopmail.com' && data.password === '12345678') {
-      return of({
-        token: 'static-token-123',
-        role: 'ADMIN'
-      });
-    }
-    else if (data.email === 'schoolsuperadmin@yopmail.com' && data.password === '12345678') {
+     if (data.email === 'schoolsuperadmin@yopmail.com' && data.password === '12345678') {
       return of({
         token: 'static-token-123',
         role: 'SUPER_ADMIN'
+      });
+    }
+    else if (data.email === 'schooladmin@yopmail.com' && data.password === '12345678') {
+      return of({
+        token: 'static-token-123',
+        role: 'ADMIN'
       });
     }
     else if (data.email === 'schoolteacher@yopmail.com' && data.password === '12345678') {
@@ -85,12 +85,12 @@ export class Auth {
     }
   }
 
-  hasRole(role: Role): boolean { // Single role check (SUPER_ADMIN,ADMIN, TEACHER)
+  hasRole(role: Role): boolean { // Single role check (SUPER_ADMIN,ADMIN,, SUB_ADMIN, STUDENT)
     const current = this.getRole();
     return !!current && current === role;
   }
 
-  hasAnyRole(roles: Role[]): boolean { // Multiple roles check (SUPER_ADMIN, ADMIN, TEACHER)
+  hasAnyRole(roles: Role[]): boolean { // Multiple roles check (SUPER_ADMIN, ADMIN, SUB_ADMIN, STUDENT)
     const current = this.getRole();
     return !!current && roles.includes(current);
   }
