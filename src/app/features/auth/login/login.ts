@@ -4,6 +4,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { Auth } from '../../../core/services/auth';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ export class Login implements OnInit {
     private fb: FormBuilder,
     private authService: Auth,
     private router: Router,
+    private route: ActivatedRoute,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.loginForm = this.fb.group({
@@ -61,7 +63,7 @@ export class Login implements OnInit {
           }
         }
         console.log("🚀 ~ Login ~ onSubmit ~ res:", res)
-        this.redirectByRole(res.role);
+        this.redirectPostLogin(res.role);
       },
       error: () => {
         this.error = 'Invalid credentials';
@@ -70,21 +72,18 @@ export class Login implements OnInit {
     });
   }
 
-  redirectByRole(role: string) {
-    if (role === 'SUPER_ADMIN') { // PRINCIPAL
-      this.router.navigate(['/super-admin']);
+  redirectPostLogin(role: string) {
+    const roleBase =
+      role === 'SUPER_ADMIN' ? '/super-admin' :
+      role === 'ADMIN' ? '/admin' :
+      role === 'SUB_ADMIN' ? '/sub-admin' :
+      role === 'STUDENT' ? '/students' : '/auth/login';
+
+    const redirect = this.route.snapshot.queryParamMap.get('redirect');
+    if (redirect && redirect.startsWith(roleBase)) {
+      this.router.navigateByUrl(redirect);
+      return;
     }
-    else if (role === 'ADMIN') { // DIRECTOR or MANAGER
-      this.router.navigate(['/admin']);
-    } 
-     else if (role === 'SUB_ADMIN') { // TEACHER or ASSISTANT
-      this.router.navigate(['/sub-admin']);
-    } 
-     else if (role === 'STUDENT') { // STUDENT
-      this.router.navigate(['/students']);
-    } 
-    else {
-      this.router.navigate(['auth/register']);
-    }
+    this.router.navigate([roleBase]);
   }
 }

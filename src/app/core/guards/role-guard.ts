@@ -28,5 +28,18 @@ export const roleGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
-  return router.createUrlTree(['/auth/login'], { queryParams: { redirect: state.url } });
+  // If logged in but role not allowed, send to their dashboard
+  if (userRole === 'SUPER_ADMIN') {
+    return router.createUrlTree(['/super-admin']);
+  }
+  if (userRole === 'ADMIN') {
+    return router.createUrlTree(['/admin']);
+  }
+  if (userRole === 'SUB_ADMIN') {
+    return router.createUrlTree(['/sub-admin']);
+  }
+  if (userRole === 'STUDENT') {
+    return router.createUrlTree(['/students']);
+  }
+  return router.createUrlTree(['/auth/login']);
 };

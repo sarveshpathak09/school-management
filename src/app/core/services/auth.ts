@@ -37,7 +37,7 @@ export class Auth {
     else if (data.email === 'schoolteacher@yopmail.com' && data.password === '12345678') {
       return of({
         token: 'static-token-123',
-        role: 'TEACHER'
+        role: 'SUB_ADMIN'
       });
     }
     else if (data.email === 'schoolstudent@yopmail.com' && data.password === '12345678') {
