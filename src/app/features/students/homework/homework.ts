@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-homework',
   imports: [],
   templateUrl: './homework.html',
-  styleUrl: './homework.scss',
+  styleUrls: ['./homework.scss'],
 })
 export class Homework {
 
