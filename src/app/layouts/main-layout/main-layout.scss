@@ -1,1 +1,54 @@
+.main-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; // 🚫 no outer scroll
+  overscroll-behavior: none; // block scroll chaining to the viewport
+}
 
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  flex-shrink: 0;
+  overflow-y: auto; // allow sidebar to scroll when content is long
+  overscroll-behavior: contain; // keep scroll inside the sidebar
+}
+
+/* When sidebar is collapsed keep layout stable */
+.sidebar-placeholder {
+  width: 0;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+/* Right side */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; // 🚫 prevent page scroll
+}
+
+/* Header */
+.header {
+  height: 60px;
+  flex-shrink: 0;
+}
+
+/* Footer */
+.footer {
+  height: 40px;
+  flex-shrink: 0;
+}
+
+/* ONLY CONTENT SCROLLS */
+.page-content {
+  flex: 1;
+  min-height: 0; // allow flex item to shrink and not push page
+  overflow-y: auto; // ✅ scroll only when content is long
+  overscroll-behavior: contain; // keep scroll inside content, no body movement
+  padding: 16px;
+  background-color: #f1f5f9;
+}

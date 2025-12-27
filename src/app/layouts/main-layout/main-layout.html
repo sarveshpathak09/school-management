@@ -1,4 +1,30 @@
 <div class="main-layout">
-  <router-outlet></router-outlet>
-  <!-- Add header/sidebar/footer here when ready -->
+
+  <!-- Sidebar -->
+  @if (isSidebarOpen) {
+    <app-sidebar class="sidebar"></app-sidebar>
+  }
+  @else {
+    <div class="sidebar-placeholder"></div>
+  }
+  <!-- End of Sidebar -->
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Header -->
+    <app-header class="header" (toggleSidebar)="toggleSidebar()"></app-header>
+    <!-- End of Header -->
+
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <app-footer class="footer"></app-footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Main Content -->
+
 </div>

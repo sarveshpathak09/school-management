@@ -1,1 +1,68 @@
+.sidebar-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* allow inner scroll areas to size correctly */
+    box-sizing: border-box; /* keep padding within full height to avoid overflow */
+    background: linear-gradient(180deg, #1e293b, #0f172a);
+    color: #fff;
+    padding: 16px;
+
+    .school-name {
+      font-size: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0; /* keep header visible */
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      margin-bottom: 0;
+      flex: 1;          /* take remaining height */
+      min-height: 0;    /* enable scrolling within this area */
+      overflow-y: auto; /* scroll when content is long */
+      padding-right: 6px; /* keep text away from scrollbar */
+
+      li {
+        padding: 12px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        i {
+          width: 18px;
+        }
+      }
+    }
+}
+
+/* STARTSubtle custom scrollbar for sidebar menu (webkit browsers) */
+.sidebar-container .menu::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar-container .menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-container .menu::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+.sidebar-container .menu::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+/* END Subtle custom scrollbar for sidebar menu (webkit browsers) */
+
 
