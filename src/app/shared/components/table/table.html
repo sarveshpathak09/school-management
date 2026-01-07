@@ -1,0 +1,78 @@
+@if (!loading) {
+  <div class="table-wrapper">
+    <table class="app-table">
+      <thead>
+        <tr>
+          @if (showIndex) {
+            <th class="index">#</th>
+          }
+          @for (col of columns; track col.key) {
+            <th
+              [style.width]="col.width"
+              [class.center]="col.align === 'center'"
+              [class.right]="col.align === 'right'">
+              {{ col.header }}
+            </th>
+          }
+          @if (rowActions.length) {
+            <th class="actions">Actions</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of pagedData; track row; let i = $index) {
+          <tr>
+            @if (showIndex) {
+              <td class="index">{{ startIndex + i + 1 }}</td>
+            }
+            @for (col of columns; track col.key) {
+              <td
+                [class.center]="col.align === 'center'"
+                [class.right]="col.align === 'right'">
+                {{ valueOf(row, col) }}
+              </td>
+            }
+            @if (rowActions.length) {
+              <td class="actions">
+                @for (a of rowActions; track a.id) {
+                  <button type="button" class="btn" (click)="onAction(a.id, row)">
+                    {{ a.label }}
+                  </button>
+                }
+              </td>
+            }
+          </tr>
+        }
+        @if (!data.length) {
+          <tr>
+            <td [attr.colspan]="columns.length + (rowActions.length ? 1 : 0) + (showIndex ? 1 : 0)">
+              No data available
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="pagination" *ngIf="effectiveTotal > 0">
+      <div class="rows-per-page">
+        <label for="rpp">Rows per page</label>
+        <select id="rpp" [value]="pageSize" (change)="changePageSizeFromEvent($event)">
+          @for (size of [5, 10, 20, 50]; track size) {
+            <option [value]="size">{{ size }}</option>
+          }
+        </select>
+      </div>
+      <div class="page-info">
+        {{ startIndex + 1 }}–{{ endIndex }} of {{ effectiveTotal }}
+      </div>
+      <div class="pager">
+        <button class="icon-btn" (click)="prev()" [disabled]="page <= 1" aria-label="Previous page">‹</button>
+        <span class="page-num">{{ page }} / {{ pageCount }}</span>
+        <button class="icon-btn" (click)="next()" [disabled]="page >= pageCount" aria-label="Next page">›</button>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="loading">Loading...</div>
+}
+
+

@@ -6,6 +6,7 @@ import { Api } from './api';
 import { AuthResponse, LoginRequest } from '../interface/auth';
 import { Role } from '../interface/role';
 import { isPlatformBrowser } from '@angular/common';
+import { AUTH_API_URL } from './apiUrls';
 
  @Injectable({ 
    providedIn: 'root' 
@@ -20,7 +21,7 @@ export class Auth {
   ) { }
 
   //  DUMMY LOGIN API CALL
-  login(data: any) {
+  dummyLogin(data: any) {
     // ✅ dummy credentials
      if (data.email === 'schoolsuperadmin@yopmail.com' && data.password === '12345678') {
       return of({
@@ -49,16 +50,17 @@ export class Auth {
     // ❌ wrong credentials
     return throwError(() => new Error('Invalid credentials'));
   }
-
+  
   // Real API login (Node.js or .NET backends) using reusable Api service
-  loginApi(credentials: LoginRequest) {  // REAL BACKEND LOGIN API CALL
-    return this.api.post<AuthResponse>('auth/login', credentials)
+  login(credentials: LoginRequest) {  // REAL BACKEND LOGIN API CALL
+    return this.api.post<AuthResponse>(AUTH_API_URL.SIGN_IN, credentials)
     .pipe(
       tap(
         (res) => this.handleLogin(res)
       )
     );
   }
+  
   
   handleLogin(res: AuthResponse) {
     this.tokenService.setToken(res.token);
@@ -82,6 +84,7 @@ export class Auth {
     this.tokenService.removeToken();
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('role');
+      localStorage.removeItem('rememberedEmail');
     }
   }
 

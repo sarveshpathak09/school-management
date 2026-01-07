@@ -52,6 +52,7 @@ export class Login implements OnInit {
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (res: any) => {
+        console.log("login res>>", res)
         this.authService.handleLogin(res);
         if (isPlatformBrowser(this.platformId)) {
           const rememberMe = this.loginForm.get('rememberMe')?.value;
@@ -62,7 +63,6 @@ export class Login implements OnInit {
             localStorage.removeItem('rememberedEmail');
           }
         }
-        console.log("🚀 ~ Login ~ onSubmit ~ res:", res)
         this.redirectPostLogin(res.role);
       },
       error: () => {

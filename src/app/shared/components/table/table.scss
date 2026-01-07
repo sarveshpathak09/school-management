@@ -1,0 +1,155 @@
+.table-wrapper {
+  overflow: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: auto;
+}
+
+.app-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f9fafb;
+  color: #111827;
+  text-align: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.app-table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1f2937;
+  vertical-align: middle;
+}
+
+.app-table tbody tr:hover td {
+  background: #fafafa;
+}
+
+.index {
+  width: 60px;
+  text-align: center;
+}
+
+.actions {
+  white-space: nowrap;
+  text-align: right;
+  width: 160px;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.app-table th.center,
+.app-table td.center {
+  text-align: center;
+}
+
+.app-table th.right,
+.app-table td.right {
+  text-align: right;
+}
+
+.app-table th.actions,
+.app-table td.actions {
+  text-align: right;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #111827;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-inline-end: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  background: #111827;
+  color: #fff;
+}
+
+.loading {
+  padding: 24px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 10px 12px;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.rows-per-page {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #374151;
+}
+
+.rows-per-page select {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.page-info {
+  color: #6b7280;
+  min-width: 120px;
+  text-align: right;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-num {
+  color: #374151;
+  font-weight: 500;
+}
+

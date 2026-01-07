@@ -1,0 +1,29 @@
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 16px 0 12px;
+}
+
+.breadcrumbs {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.breadcrumbs .sep {
+  margin: 0 6px;
+  color: #9ca3af;
+}
+
+.breadcrumbs .crumb.current {
+  color: #111827;
+  font-weight: 600;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
+  font-weight: 700;
+}
+
